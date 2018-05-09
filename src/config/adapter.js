@@ -1,4 +1,5 @@
 const fileCache = require('think-cache-file');
+const redisCache = require('think-cache-redis');
 const nunjucks = require('think-view-nunjucks');
 const fileSession = require('think-session-file');
 const mysql = require('think-model-mysql');
@@ -23,6 +24,19 @@ exports.cache = {
   }
 };
 
+exports.cache = {
+  type: 'redis',
+  common: {
+    timeout: 24 * 3600 * 1000 // millisecond
+  },
+  redis: {
+    handle: redisCache,
+    port: 6379,
+    host: '127.0.0.1',
+    password: ''
+  }
+};
+
 /**
  * model adapter config
  * @type {Object}
@@ -36,13 +50,13 @@ exports.model = {
   },
   mysql: {
     handle: mysql,
-    database: '',
-    prefix: 'think_',
+    database: 'company',
+    prefix: '',
     encoding: 'utf8',
     host: '127.0.0.1',
-    port: '',
+    port: '3306',
     user: 'root',
-    password: 'root',
+    password: '123456',
     dateStrings: true
   }
 };
