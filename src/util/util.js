@@ -5,5 +5,15 @@ module.exports = {
         let _3rdSessionId = timeStamp + random(8);
         console.log(_3rdSessionId);
         return _3rdSessionId;
+    },
+    
+    resultWrapper(resultCode, msg, value) {
+        return {
+            resultCode: {
+                code: resultCode,
+                msg: msg
+            },
+            value: value
+        };
     }
 }
