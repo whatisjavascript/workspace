@@ -55,6 +55,7 @@ module.exports = class extends think.Logic {
     }
 
     joinCompanyAction() {
+        const self = this;
         let rules = {
             sessionId: {
                 string: true,

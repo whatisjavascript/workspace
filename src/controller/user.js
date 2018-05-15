@@ -51,9 +51,9 @@ class User extends think.Controller {
             let companyNumber = self.get('companyNumber');
             let result = await UserService.getInstance().joinCompany(openId, companyNumber);
             if(result === 0) {
-                self.join(Util.resultWrapper(result, 'request ok', null));
+                self.json(Util.resultWrapper(result, 'request ok', null));
             }else if(result === -5) {
-                self.join(Util.resultWrapper(result, 'unkonwn companyNumber', null));
+                self.json(Util.resultWrapper(result, 'unkonwn companyNumber', null));
             }
         }else {
             self.json(Util.resultWrapper(-1, 'require login', null));

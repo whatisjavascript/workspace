@@ -58,7 +58,7 @@ class UserService {
     async joinCompany(openId, companyNumber) {
         let userModel = think.model('user');
         let companyModel = think.model('company');
-        let companyInfo = await companyModel.selectCompanyInfo(companyNumer);
+        let companyInfo = await companyModel.selectCompanyInfo(companyNumber);
         if(companyInfo) {
             let companyId = companyInfo.Id;
             await userModel.updateCompanyId(openId, companyId);

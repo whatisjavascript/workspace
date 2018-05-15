@@ -9,7 +9,8 @@ module.exports = class extends think.Model {
             City: companyInfo.city,
             District: companyInfo.district,
             AddressDetail: companyInfo.companyAddressDetail,
-            OwnerOpenId: openId
+            OwnerOpenId: openId,
+            RegistryTime: ['exp', 'NOW()']
         });
         return companyId;
     }
