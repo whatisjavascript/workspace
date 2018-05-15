@@ -30,7 +30,7 @@ class UserModel extends think.Model {
         const self = this;
         let rows = await self.where({OpenId: openId}).update({
             NickName: userInfo.nickName,
-            Gender: userInfo.gender,
+            Gender: JSON.stringify(userInfo.gender),
             Avatar: userInfo.avatar
         });
         return;

@@ -53,4 +53,22 @@ module.exports = class extends think.Logic {
             return self.json(Util.resultWrapper(-1, 'parameters error', null));
         }
     }
+
+    joinCompanyAction() {
+        let rules = {
+            sessionId: {
+                string: true,
+                required: true
+            },
+            companyNumber: {
+                string: true,
+                required: true,
+                trim: true
+            }
+        };
+        let flag = self.validate(rules);
+        if(!flag) {
+            return self.json(Util.resultWrapper(-1, 'parameters error', null));
+        }
+    }
 }

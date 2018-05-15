@@ -15,6 +15,12 @@ class CompanyService {
             return -2;
         }
     }
+
+    async getCompanyInfoByNumber(companyNumber) {
+        let companyModel = think.model('company');
+        let companyInfo = await companyModel.selectCompanyInfo(companyNumber);
+        return companyInfo;
+    }
 }
 
 module.exports = CompanyService;

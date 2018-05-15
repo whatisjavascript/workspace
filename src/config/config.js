@@ -7,7 +7,7 @@ module.exports = {
   defaultErrno: 1000,
   validateDefaultErrno: 1001,
   appId: 'wx866cbe9ada1ab20e',
-  appSecret: '5d9500cd14b52591a32825b4290bf70f',
+  appSecret: '5611a19c23a420ad7f597fbc1dc66dfb',
   openIdCachePrefix: 'redisOpenId',
   sessionIdCachePrefix: 'redisSessionId'
 };

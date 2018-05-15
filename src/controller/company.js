@@ -1,5 +1,5 @@
 const Util = require('../util/util');
-const CompanySerivce = require('../service/CompanyService');
+const CompanyService = require('../service/CompanyService');
 module.exports = class extends think.Controller {
     async createCompanyAction() {
         const self = this;
@@ -14,7 +14,7 @@ module.exports = class extends think.Controller {
             companyInfo.province = companyPosition[0];
             companyInfo.city = companyPosition[1];
             companyInfo.district = companyPosition[2] ? companyPosition[1] : '';
-            let result = await CompanySerivce.getInstance().createCompanyService(openId, companyInfo);
+            let result = await CompanyService.getInstance().createCompanyService(openId, companyInfo);
             if(result === -2) {
                 self.json(Util.resultWrapper(-2, 'company number exist', null));
             }else {
@@ -23,6 +23,12 @@ module.exports = class extends think.Controller {
         }else {
             self.json(Util.resultWrapper(-1, 'require login', null));
         }
-        
+    }
+
+    async getCompanyInfoByNumberAction() {
+        const self = this;
+        let companyNumber = this.get('companyNumber');
+        let companyInfo = await CompanyService.getInstance().getCompanyInfoByNumber(companyNumber);
+        self.json(Util.resultWrapper(0, 'request ok', companyInfo));
     }
 }

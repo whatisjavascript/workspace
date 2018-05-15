@@ -53,5 +53,18 @@ class UserService {
         await userModel.updateUserInfo(openId, userBaseInfo);
         return;
     }
+
+    // 加入企业
+    async joinCompany(openId, companyNumber) {
+        let userModel = think.model('user');
+        let companyModel = think.model('company');
+        let companyInfo = await companyModel.selectCompanyInfo(companyNumer);
+        if(companyInfo) {
+            let companyId = companyInfo.Id;
+            await userModel.updateCompanyId(openId, companyId);
+            return 0;
+        }
+        return -5;
+    }
 }
 module.exports = UserService;

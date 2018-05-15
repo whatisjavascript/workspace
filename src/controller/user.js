@@ -41,5 +41,23 @@ class User extends think.Controller {
             self.json(Util.resultWrapper(-1, 'require login', null));
         }
     }
+
+    // 加入企业
+    async joinCompanyAction() {
+        const self = this;
+        let sessionId = self.get('sessionId');
+        const openId = await think.cache(think.config('openIdCachePrefix') + sessionId, undefined, 'redis');
+        if(openId) {
+            let companyNumber = self.get('companyNumber');
+            let result = await UserService.getInstance().joinCompany(openId, companyNumber);
+            if(result === 0) {
+                self.join(Util.resultWrapper(result, 'request ok', null));
+            }else if(result === -5) {
+                self.join(Util.resultWrapper(result, 'unkonwn companyNumber', null));
+            }
+        }else {
+            self.json(Util.resultWrapper(-1, 'require login', null));
+        }
+    }
 }
 module.exports = User;

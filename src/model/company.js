@@ -21,4 +21,12 @@ module.exports = class extends think.Model {
         });
         return result.length > 0;
     }
+
+    async selectCompanyInfo(companyNumber) {
+        let result = await this.select({
+            table: 'company',
+            where: 'Number = ' + JSON.stringify(companyNumber)
+        });
+        return result.length > 0 ? result.pop() : null;
+    }
 }
