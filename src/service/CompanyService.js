@@ -21,6 +21,12 @@ class CompanyService {
         let companyInfo = await companyModel.selectCompanyInfo(companyNumber);
         return companyInfo;
     }
+
+    async addCompanyLocation(companyId, latitude, longitude) {
+        let companyModel = think.model('company');
+        await companyModel.addCompanyLocation(companyId, latitude, longitude);
+        return;
+    }
 }
 
 module.exports = CompanyService;

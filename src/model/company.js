@@ -30,4 +30,12 @@ module.exports = class extends think.Model {
         });
         return result.length > 0 ? result.pop() : null;
     }
+
+    async addCompanyLocation(companyId, latitude, longitude) {
+        let latitudeToInt = latitude * 100000;
+        let longitudeToInt = longitude * 100000;
+        const SQL = "INSERT INTO `company_location` VALUES("+ companyId +","+ parseFloat(latitudeToInt) +","+ parseFloat(longitudeToInt) +")";
+        await this.execute(SQL);
+        return;
+    }
 }

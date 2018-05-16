@@ -52,4 +52,27 @@ module.exports = class extends think.Logic {
             return false;
         }
     }
+
+    setCompanyLocationAction() {
+        const self = this;
+        let rules = {
+            sessionId: {
+                string: true,
+                required: true
+            },
+            latitude: {
+                float: true,
+                required: true
+            },
+            longitude: {
+                float: true,
+                required: true
+            }
+        };
+        let flag = self.validate(rules);
+        if(!flag) {
+            self.json(Util.resultWrapper(-1, 'parameters error', null));
+            return false;
+        }
+    }
 }
