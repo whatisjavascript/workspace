@@ -22,10 +22,22 @@ class CompanyService {
         return companyInfo;
     }
 
+    async getCompanyInfoById(companyId) {
+        let companyModel = think.model('company');
+        let companyInfo = await companyModel.getCompanyInfoById(companyId);
+        return companyInfo;
+    }
+
     async addCompanyLocation(companyId, latitude, longitude) {
         let companyModel = think.model('company');
         await companyModel.addCompanyLocation(companyId, latitude, longitude);
         return;
+    }
+
+    async getCompanyLocation(companyId) {
+        let companyModel = think.model('company');
+        let result = await companyModel.selectCompanyLocation(companyId);
+        return result;
     }
 }
 

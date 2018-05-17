@@ -34,6 +34,13 @@ module.exports = class extends think.Controller {
         self.json(Util.resultWrapper(0, 'request ok', companyInfo));
     }
 
+    async getCompanyInfoByIdAction() {
+        const self = this;
+        let companyId = self.get('companyId');
+        let companyInfo = await CompanyService.getInstance().getCompanyInfoById(companyId);
+        self.json(Util.resultWrapper(0, 'request ok', companyInfo));
+    }
+
     async setCompanyLocationAction() {
         const self = this;
         let sessionId = self.get('sessionId');
@@ -47,6 +54,17 @@ module.exports = class extends think.Controller {
             self.json(Util.resultWrapper(0, 'request ok', null));
         }else {
             self.json(Util.resultWrapper(-1, 'require login', null));
+        }
+    }
+
+    async getCompanyLocationAction() {
+        const self = this;
+        let companyId = self.get('companyId');
+        if(companyId) {
+            let result = await CompanyService.getInstance().getCompanyLocation(companyId);
+            self.json(Util.resultWrapper(0, 'request ok', result));
+        }else {
+            self.json(Util.resultWrapper(-1, 'require parameter companyId', null));
         }
     }
 }
