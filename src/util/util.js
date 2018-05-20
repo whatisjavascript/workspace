@@ -13,7 +13,7 @@ module.exports = {
                 code: resultCode,
                 msg: msg
             },
-            value: value
+            value: value ? value : null
         };
     }
 }

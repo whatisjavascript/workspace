@@ -10,14 +10,14 @@ class AttenceService {
         return attenceInfo;
     }
 
-    async setAttenceStartTime(openId) {
+    async setAttenceStartTime(openId, location, status) {
         let attenceModel = think.model('attence');
-        return await attenceModel.setAttenceStartTime(openId);
+        return await attenceModel.setAttenceStartTime(openId, location, status);
     }
 
-    async setAttenceEndTime(id) {
+    async setAttenceEndTime(id, location, status) {
         let attenceModel = think.model('attence');
-        return await attenceModel.updateAttenceEndTime(id);
+        return await attenceModel.updateAttenceEndTime(id, location, status);
     }
 }
 
