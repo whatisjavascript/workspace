@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 14/05/2018 23:54:27
+ Date: 22/05/2018 07:41:38
 */
 
 SET NAMES utf8mb4;
@@ -31,9 +31,11 @@ CREATE TABLE `company`  (
   `AddressDetail` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '地址详情',
   `OwnerOpenId` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '企业所有人的OpenId',
   `RegistryTime` datetime(0) NULL DEFAULT NULL COMMENT '注册时间',
+  `AttenceStartTime` time(0) NULL DEFAULT '09:00:00',
+  `AttenceEndTime` time(0) NULL DEFAULT '18:00:00',
   PRIMARY KEY (`Id`, `Number`) USING BTREE,
   INDEX `OwnerOpenId`(`OwnerOpenId`) USING BTREE,
   CONSTRAINT `OwnerOpenId` FOREIGN KEY (`OwnerOpenId`) REFERENCES `userinfo` (`OpenId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
