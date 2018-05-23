@@ -10,6 +10,7 @@ class CompanyService {
             let companyId = await companyModel.addCompany(openId, companyBaseInfo);
             let userModel = think.model('user');
             await userModel.updateCompanyId(openId, companyId);
+            await userModel.setUserRoleLevel(openId, 3);
             return companyId;
         }else{
             return -2;

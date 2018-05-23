@@ -9,6 +9,16 @@ module.exports = {
         return result;
     },
 
+    async getAccessToken(appId, appSecret) {
+        let baseUrl = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+ appId +'&secret='+ appSecret;
+        let result = await this.sendHttpsGetRequest(url);
+        return result;
+    },
+
+    async sendQingjiaTemplate(openId, toUser, access_token) {
+        let baseUrl = 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + access_token;
+    },
+
     async sendHttpsGetRequest(url) {
         return await new Promise((resolve, reject) => {
             https.get(url, (res) => {

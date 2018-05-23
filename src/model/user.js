@@ -43,5 +43,13 @@ class UserModel extends think.Model {
         });
         return;
     }
+
+    async setUserRoleLevel(openId, roleLevel) {
+        const self = this;
+        await self.where({OpenId: openId}).update({
+            RoleLevel: roleLevel
+        });
+        return;
+    }
 }
 module.exports = UserModel;
